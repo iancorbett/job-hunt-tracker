@@ -46,3 +46,10 @@ class ApplicationController extends Controller
         Application::create($data + ['user_id' => auth()->id()]);
         return redirect()->route('applications.index')->with('ok','Application saved.');
     }
+
+    public function destroy(Application $application) {
+        abort_unless($application->user_id === auth()->id(), 403);
+        $application->delete();
+        return back()->with('ok','Application deleted.');
+    }
+}
