@@ -21,3 +21,8 @@ class ApplicationController extends Controller
 
         return view('applications.index', compact('applications','companies'));
     }
+
+    public function create() {
+        $companies = Company::where('user_id', auth()->id())->orderBy('name')->get();
+        return view('applications.create', compact('companies'));
+    }
