@@ -26,3 +26,23 @@ class ApplicationController extends Controller
         $companies = Company::where('user_id', auth()->id())->orderBy('name')->get();
         return view('applications.create', compact('companies'));
     }
+
+    public function store(Request $r) {
+        $data = $r->validate([
+            'company_id' => ['required','exists:companies,id'],
+            'role'       => ['required','string','max:255'],
+            'status'     => ['required','in:Saved,Applied,Interview,Offer,Rejected'],
+            'salary_min' => ['nullable','integer'],
+            'salary_max' => ['nullable','integer','gte:salary_min'],
+            'applied_at' => ['nullable','date'],
+            'notes'      => ['nullable','string'],
+        ]);
+
+        
+        Company::where('id', $data['company_id'])
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+
+        Application::create($data + ['user_id' => auth()->id()]);
+        return redirect()->route('applications.index')->with('ok','Application saved.');
+    }
