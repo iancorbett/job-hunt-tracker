@@ -16,4 +16,13 @@ class CompanyController extends Controller
 
     public function create() { return view('companies.create'); }
 
+    public function store(Request $r) {
+        $data = $r->validate([
+            'name' => 'required|string|max:255',
+            'website' => 'nullable|url',
+            'location' => 'nullable|string|max:255',
+        ]);
+        Company::create($data + ['user_id' => auth()->id()]);
+        return redirect()->route('companies.index')->with('ok','Company added.');
+    }
 }
