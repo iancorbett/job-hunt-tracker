@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
     public function __construct() { $this->middleware('auth'); }
 
     public function index() {
-        $companies = Company::where('user_id', auth()->id())->latest()->paginate(10);
+        $companies = Company::where('user_id', Auth::id())->latest()->paginate(10);
         return view('companies.index', compact('companies'));
     }
 
@@ -22,17 +23,17 @@ class CompanyController extends Controller
             'website' => 'nullable|url',
             'location' => 'nullable|string|max:255',
         ]);
-        Company::create($data + ['user_id' => auth()->id()]);
+        Company::create($data + ['user_id' => Auth::id()]);
         return redirect()->route('companies.index')->with('ok','Company added.');
     }
 
     public function edit(Company $company) {
-        abort_unless($company->user_id === auth()->id(), 403);
+        abort_unless($company->user_id === Auth::id(), 403);
         return view('companies.edit', compact('company'));
     }
 
     public function update(Request $r, Company $company) {
-        abort_unless($company->user_id === auth()->id(), 403);
+        abort_unless($company->user_id === Auth::id(), 403);
         $data = $r->validate([
             'name' => 'required|string|max:255',
             'website' => 'nullable|url',
@@ -43,7 +44,7 @@ class CompanyController extends Controller
     }
 
     public function destroy(Company $company) {
-        abort_unless($company->user_id === auth()->id(), 403);
+        abort_unless($company->user_id === Auth::id(), 403);
         $company->delete();
         return back()->with('ok','Company deleted.');
     }
