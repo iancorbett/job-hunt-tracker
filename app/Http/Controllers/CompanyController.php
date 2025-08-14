@@ -41,4 +41,10 @@ class CompanyController extends Controller
         $company->update($data);
         return redirect()->route('companies.index')->with('ok','Company updated.');
     }
+
+    public function destroy(Company $company) {
+        abort_unless($company->user_id === auth()->id(), 403);
+        $company->delete();
+        return back()->with('ok','Company deleted.');
+    }
 }
