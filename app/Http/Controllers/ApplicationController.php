@@ -49,6 +49,41 @@ class ApplicationController extends Controller
         return redirect()->route('applications.index')->with('ok','Application saved.');
     }
 
+    public function edit(Application $application)
+{
+    abort_unless($application->user_id === Auth::id(), 403);
+
+    $companies = Company::where('user_id', Auth::id())
+        ->orderBy('name')
+        ->get();
+
+    return view('applications.edit', compact('application','companies'));
+}
+
+public function update(Request $r, Application $application)
+{
+    abort_unless($application->user_id === Auth::id(), 403);
+
+    $data = $r->validate([
+        'company_id' => ['required','exists:companies,id'],
+        'role'       => ['required','string','max:255'],
+        'status'     => ['required','in:Saved,Applied,Interview,Offer,Rejected'],
+        'salary_min' => ['nullable','integer'],
+        'salary_max' => ['nullable','integer','gte:salary_min'],
+        'applied_at' => ['nullable','date'],
+        'notes'      => ['nullable','string'],
+    ]);
+
+    
+    Company::where('id', $data['company_id'])
+        ->where('user_id', Auth::id())
+        ->firstOrFail();
+
+    $application->update($data);
+
+    return redirect()->route('applications.index')->with('ok','Application updated.');
+}
+
     public function destroy(Application $application) {
         abort_unless($application->user_id === Auth::id(), 403);
         $application->delete();
