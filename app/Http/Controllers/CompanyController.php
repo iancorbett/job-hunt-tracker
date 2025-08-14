@@ -25,4 +25,20 @@ class CompanyController extends Controller
         Company::create($data + ['user_id' => auth()->id()]);
         return redirect()->route('companies.index')->with('ok','Company added.');
     }
+
+    public function edit(Company $company) {
+        abort_unless($company->user_id === auth()->id(), 403);
+        return view('companies.edit', compact('company'));
+    }
+
+    public function update(Request $r, Company $company) {
+        abort_unless($company->user_id === auth()->id(), 403);
+        $data = $r->validate([
+            'name' => 'required|string|max:255',
+            'website' => 'nullable|url',
+            'location' => 'nullable|string|max:255',
+        ]);
+        $company->update($data);
+        return redirect()->route('companies.index')->with('ok','Company updated.');
+    }
 }
