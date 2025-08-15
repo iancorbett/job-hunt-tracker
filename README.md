@@ -37,3 +37,53 @@ Laravel + Vite integration for modern frontend workflowpromptly addressed.
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+Setup Instructions
+
+Clone the repo
+
+git clone <repo-url>
+cd job-hunt-tracker
+
+
+Install PHP & JS dependencies
+
+composer install
+npm install
+
+
+Set up your .env file
+
+cp .env.example .env
+php artisan key:generate
+
+
+Run migrations
+
+php artisan migrate
+
+
+Serve the app
+In two separate terminals:
+
+php artisan serve
+npm run dev
+
+
+Log in & start tracking
+
+Register a user account
+
+Add companies (currently via Tinker — UI coming soon)
+
+Add applications tied to those companies
+
+Future Plans
+
+Add a UI for adding companies (no more Tinker)
+
+Better filtering/sorting on applications
+
+Optional resume/cover letter uploads
+
+Thank you for visiting!
