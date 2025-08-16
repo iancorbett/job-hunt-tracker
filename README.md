@@ -78,7 +78,7 @@ Add companies (currently via Tinker — UI coming soon)
 
 Add applications tied to those companies
 
-Future Plans
+## Future Plans
 
 Add a UI for adding companies (no more Tinker)
 
