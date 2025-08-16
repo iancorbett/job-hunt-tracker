@@ -38,7 +38,7 @@ Laravel + Vite integration for modern frontend workflow promptly addressed.
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-Setup Instructions
+## Setup Instructions
 
 Clone the repo
 
