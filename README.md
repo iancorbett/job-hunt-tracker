@@ -22,6 +22,8 @@ Database: SQLite (easy local setup, can swap to MySQL/Postgres)
 
 Auth: Laravel Breeze
 
+! [Dashboard](Screenshot1.png)
+
 ## Features
 
 Add/edit/delete companies
@@ -34,7 +36,7 @@ Salary range + notes support
 
 Laravel + Vite integration for modern frontend workflow promptly addressed.
 
-! [Dashboard](Screenshot1.png)
+! [Dashboard](Screenshot2.png)
 
 ## License
 
