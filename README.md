@@ -36,7 +36,7 @@ Salary range + notes support
 
 Laravel + Vite integration for modern frontend workflow promptly addressed.
 
-! [Dashboard](Screenshot2.png)
+! [Form](Screenshot2.png)
 
 ## License
 
