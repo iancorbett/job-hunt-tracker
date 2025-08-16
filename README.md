@@ -34,6 +34,8 @@ Salary range + notes support
 
 Laravel + Vite integration for modern frontend workflow promptly addressed.
 
+! [Dashboard](Screenshot1.png)
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
