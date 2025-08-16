@@ -1,8 +1,8 @@
-Job Hunt Tracker
+## Job Hunt Tracker
 
 This is my personal job application tracker I built with Laravel + Vite. I wanted something lightweight but still powerful enough to keep track of companies, positions, and application statuses without juggling a bunch of random spreadsheets.
 
-The app lets me:
+## The app lets me:
 
 Store and manage companies (name, website, location, etc.)
 
@@ -12,7 +12,7 @@ Keep everything tied to my user account so it’s private and organized
 
 Use Laravel Breeze auth for login/registration
 
-Tech Stack
+## Tech Stack
 
 Backend: Laravel 12 (PHP 8)
 
@@ -22,7 +22,7 @@ Database: SQLite (easy local setup, can swap to MySQL/Postgres)
 
 Auth: Laravel Breeze
 
-Features
+## Features
 
 Add/edit/delete companies
 
@@ -32,7 +32,7 @@ Authenticated access — only see your own data
 
 Salary range + notes support
 
-Laravel + Vite integration for modern frontend workflowpromptly addressed.
+Laravel + Vite integration for modern frontend workflow promptly addressed.
 
 ## License
 
